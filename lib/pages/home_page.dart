@@ -140,6 +140,7 @@ class _HomePageState extends State<HomePage>
                     fontSize: ScreenUtil().setSp(26),
                   )),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text('￥${res['mallPrice']}'),
                   Text(
