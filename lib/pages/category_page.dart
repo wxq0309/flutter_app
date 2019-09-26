@@ -6,6 +6,7 @@ import '../model/category.dart';
 import '../provide/child_category.dart';
 import 'package:flutter/material.dart';
 import 'package:project1/service/service_method.dart';
+import '../model/categoryGoodsList.dart';
 
 class CategoryPage extends StatelessWidget {
   @override
@@ -22,6 +23,7 @@ class CategoryPage extends StatelessWidget {
           Column(
             children: <Widget>[
               RightNavigationNav(),
+              RightGoodsList()
             ],
           )
         ],
@@ -57,7 +59,7 @@ class _LeftNavigationNavState extends State<LeftNavigationNav> {
 
   Widget _LeftInkWell(int index) {
     bool isClick = false;
-    isClick=(index==listindex)?true:false;
+    isClick = (index == listindex) ? true : false;
     return InkWell(
       onTap: () {
         setState(() {
@@ -72,7 +74,7 @@ class _LeftNavigationNavState extends State<LeftNavigationNav> {
         padding: EdgeInsets.only(left: 15, top: 20),
         height: ScreenUtil().setHeight(80),
         decoration: BoxDecoration(
-            color: isClick?Colors.black12:Colors.white,
+            color: isClick ? Colors.black12 : Colors.white,
             border: Border(
                 bottom: BorderSide(width: 1, color: Colors.black12),
                 right: BorderSide(width: 1, color: Colors.black12))),
@@ -158,5 +160,125 @@ class _RightNavigationNavState extends State<RightNavigationNav> {
         );
       },
     ));
+  }
+}
+
+class RightGoodsList extends StatefulWidget {
+  @override
+  _RightGoodsListState createState() => _RightGoodsListState();
+}
+
+class _RightGoodsListState extends State<RightGoodsList> {
+  List list = [];
+
+  void _getGoodList() async {
+    var data = {'categoryId': '4', 'categorySubId': "", 'page': 1};
+    await request('getMallGoods', data: data).then((val) {
+      var data = json.decode(val.toString());
+      CategoryGoodsListModel goodsList = CategoryGoodsListModel.fromJson(data);
+      setState(() {
+        list = goodsList.data;
+      });
+      // print('分类商品列表：>>>>>>>>>>>>>${data}');
+    });
+  }
+
+  @override
+  void initState() {
+    _getGoodList();
+    super.initState();
+  }
+
+  //图片部分
+  Widget _goodsImage(int index) {
+    return Container(
+      width: ScreenUtil().setWidth(270),
+      child: Image.network(list[index].image),
+    );
+  }
+
+  Widget _goodsName(int index) {
+    return Container(
+      // padding: EdgeInsets.only(top: 5),
+      
+      height: ScreenUtil().setHeight(25),
+      width: ScreenUtil().setWidth(250),
+      child: Text(
+        list[index].goodsName,
+        textAlign:TextAlign.center,
+        style: TextStyle(fontSize: ScreenUtil().setSp(25)),
+      ),
+    );
+  }
+
+  Widget _goodsPrice(int index) {
+    return Container(
+      width: ScreenUtil().setWidth(250),
+      padding: EdgeInsets.only(top: 3),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            '￥${list[index].presentPrice}',
+            style:
+                TextStyle(fontSize: ScreenUtil().setSp(28), color: Colors.red),
+          ),
+          Text(
+            '￥${list[index].oriPrice}',
+            style: TextStyle(
+                color: Colors.black12,
+                fontSize: ScreenUtil().setSp(25),
+                decoration: TextDecoration.lineThrough, //下划线效果
+                decorationColor: Colors.black12),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _ConstWidget(int index) {
+    var listlength = list.length;
+
+    if(listlength > 0 && listlength > index+1){
+       return Container(
+      width: ScreenUtil().setWidth(570),
+      // padding: EdgeInsets.all(5),
+      child: Row(
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              _goodsImage(index),
+              _goodsName(index),
+              _goodsPrice(index)
+            ],),
+          Column(
+            children: <Widget>[
+              _goodsImage(index+1),
+              _goodsName(index+1),
+              _goodsPrice(index+1)
+            ],
+          )
+        ],
+      ),
+    );
+    }else{
+        return Text('再往下滑就没数据啦', textAlign: TextAlign.center,);
+    }
+   
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      // padding: EdgeInsets.all(5.0),
+      width: ScreenUtil().setWidth(550),
+      height: ScreenUtil().setHeight(1000),
+      child: ListView.builder(
+        itemCount: list.length,
+        itemBuilder: (context, index) {
+          return _ConstWidget(index);
+        },
+      ),
+    );
   }
 }
