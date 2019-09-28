@@ -1,18 +1,29 @@
+<h1 align="center">Welcome to flutter_app 👋</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-v1.0-blue.svg?cacheSeconds=2592000" />
+</p>
 
-# project1
+## Install
 
-A new Flutter project.
+```sh
+npm install
+```
 
-## Getting Started
+## Run tests
 
-This project is a starting point for a Flutter application.
+```sh
+flutter run
+```
 
-A few resources to get you started if this is your first Flutter project:
+## Author
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+👤 **wuxq**
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* Github: [@wwxq0309](https://github.com/wwxq0309)
 
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
