@@ -323,7 +323,7 @@ class _RightGoodsListState extends State<RightGoodsList> {
   Widget build(BuildContext context) {
     return Provide<CategoryGoodsListProvide>(
       builder: (context, child, data) {
-        print(data.goodsList);
+        // print(data.goodsList);
         if (data.goodsList.length>0){
           print('最新数据显示集合');
           return Container(
@@ -338,7 +338,7 @@ class _RightGoodsListState extends State<RightGoodsList> {
             ),
           );
         } else {
-          print('进不来呀');
+          // print('进不来呀');
           return Container(
             child: Text("商品暂未上新，请等待"),
           );
