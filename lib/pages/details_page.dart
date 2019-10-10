@@ -8,6 +8,7 @@ import './details_page/expalin.dart';
 import './details_page/detail_stack.dart';
 import './details_page/hmtl.dart';
 
+
 class DetailsPage extends StatelessWidget {
   final String goodsId;
   DetailsPage(this.goodsId);

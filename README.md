@@ -13,11 +13,11 @@
 ```
   项目依赖pubspec.yaml文件
 ```
-t 
+
 ## Usage 
 
 ```sh
-flutter run
+flutter run 
 ```
 
 ## Author
