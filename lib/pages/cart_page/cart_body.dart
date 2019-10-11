@@ -73,7 +73,7 @@ class CartBody extends StatelessWidget {
             child: InkWell(
               onTap: () {},
               child: Icon(
-                Icons.delete_forever,
+                Icons.delete_outline,
                 color: Colors.black26,
                 size: 30,
               ),
