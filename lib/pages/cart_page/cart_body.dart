@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provide/provide.dart';
 import '../../model/cartInfo.dart';
+import './cart_add_increase.dart';
+import '../../provide/cart.dart';
 
 class CartBody extends StatelessWidget {
   final CartInfoMode body;
@@ -15,22 +18,25 @@ class CartBody extends StatelessWidget {
           ),
       child: Row(
         children: <Widget>[
-          _cartCheckBt(body),
+          _cartCheckBt(context,body),
           _cartImage(body),
           _cartGoodsName(body),
-          _cartPrice(body)
+          _cartPrice(context, body)
         ],
       ),
     );
   }
 
   //多选按钮
-  Widget _cartCheckBt(item) {
+  Widget _cartCheckBt(context, item) {
     return Container(
       child: Checkbox(
-        value: true,
+        value: item.isCheck,
         activeColor: Colors.pink,
-        onChanged: (bool val) {},
+        onChanged: (bool val) {
+          item.isCheck=val;
+          Provide.value<CartProvide>(context).changeCheckState(item);
+        },
       ),
     );
   }
@@ -56,13 +62,16 @@ class CartBody extends StatelessWidget {
       padding: EdgeInsets.all(10),
       alignment: Alignment.topLeft,
       child: Column(
-        children: <Widget>[Text(item.goodsName)],
+        children: <Widget>[
+          Text(item.goodsName),
+          addOrIncreaseButtom(item),
+          ],
       ),
     );
   }
 
   //商品价格
-  Widget _cartPrice(item) {
+  Widget _cartPrice(context, item) {
     return Container(
       width: ScreenUtil().setWidth(150),
       alignment: Alignment.centerRight,
@@ -71,7 +80,9 @@ class CartBody extends StatelessWidget {
           Text('￥${item.price}'),
           Container(
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Provide.value<CartProvide>(context).removeGoods(item.goodsId);
+              },
               child: Icon(
                 Icons.delete_outline,
                 color: Colors.black26,
