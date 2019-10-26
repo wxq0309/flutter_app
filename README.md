@@ -10,7 +10,8 @@
 ```
 
 ## 项目效果
-![image](https://github.com/wxq0309/flutter_app/blob/master/images/first.jpg)
+
+<img src='https://github.com/wxq0309/flutter_app/blob/master/images/first.jpg' width="375"/>
 ![image](https://github.com/wxq0309/flutter_app/blob/master/images/second.jpg)
 
 
