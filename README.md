@@ -6,7 +6,8 @@
 ## 项目介绍
 ```
 本项目主要采用flutter 1.9开发，本超市项目主要包含超市首页、超市商品分类、商品详情、个人中心、购物车功能模块！
-https://github.com/wxq0309/flutter_app/blob/master/images/first.jpg
+![image](https://github.com/wxq0309/flutter_app/blob/master/images/first.jpg)
+![image](https://github.com/wxq0309/flutter_app/blob/master/images/second.jpg)
 
 ```
 
